@@ -33,7 +33,7 @@ class App extends Component {
           <div className="secondBody">
                   {
                   this.props.items.map((item, index) =>
-                      <p className="col-md-3 text-center title" key={index}><span className="itemTitle" data-toggle="modal" data-target="#myModalBox" onClick={this.props.onGetInfoItems.bind(this, item.id)}>{item.title}</span></p>
+                      <div className="col-md-12 title" key={index}><span className="itemTitle col-md-3  text-center" data-toggle="modal" data-target="#myModalBox" onClick={this.props.onGetInfoItems.bind(this, item.id)}>{item.title}</span><span className="col-md-4  text-center">{item.data}</span><span className="col-md-3  text-center">{item.subtitle}</span></div>
                   )}
           </div>
             <div id="myModalBox" className="modal fade">
