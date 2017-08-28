@@ -9,14 +9,23 @@ import { getItems } from "./action/items";
 import { getCount } from "./action/count";
 import { getInfoItem } from "./action/infoItem";
 
-
 class App extends Component {
+    out(id){
+        this.refs[id].value = '';
+    }
+    counts(id){
+        console.log(this.props.count);
+        this.props.onGetCount(id);
+        console.log(this.props.count);
+        this.refs[id].value = this.props.count;
+    }
   render() {
     return (
         <div onLoad={ () => {
             this.props.onGetGroups();
+            this.props.onGetItems('d3956052-8110-11e7-bb31-be2e44b06b34');
         }} className="row">
-          <div className="App">
+          <div className="App1">
             <div className="col-md-1">
               <img id="img1" src={logo} alt=""/>
             </div>
@@ -27,7 +36,7 @@ class App extends Component {
           <div className="col-md-3 body">
                 {
                   this.props.groups.map((group, index) =>
-                    <p key={index}><span className="pointer" onClick={this.props.onGetItems.bind(this, group.id)}>{group.name}</span></p>
+                    <p key={index}><span className="pointer" onMouseOut={this.out.bind(this, group.id)} onMouseOver={this.counts.bind(this, group.id)} onClick={this.props.onGetItems.bind(this, group.id)}>{group.name}</span><input className="inp" id={group.id} ref={group.id}/></p>
                 )}
           </div>
           <div className="secondBody">
