@@ -10,15 +10,15 @@ import { getCount } from "./action/count";
 import { getInfoItem } from "./action/infoItem";
 
 class App extends Component {
-    out(id){
-        this.refs[id].value = '';
-    }
-    counts(id){
-        console.log(this.props.count);
-        this.props.onGetCount(id);
-        console.log(this.props.count);
-        this.refs[id].value = this.props.count;
-    }
+    // out(id){
+    //     this.refs[id].value = '';
+    // }
+    // counts(id){
+    //     console.log(this.props.count);
+    //     this.props.onGetCount(id);
+    //     console.log(this.props.count);
+    //     this.refs[id].value = this.props.count;
+    // }
   render() {
     return (
         <div onLoad={ () => {
