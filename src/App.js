@@ -29,7 +29,7 @@ class App extends Component {
             for(let i = 0; i < this.props.count.length; i++){
                 this.refs[i].value = this.props.count[i];
             }
-        }, 2000);
+        }, 1400);
     }
 
     render() {
