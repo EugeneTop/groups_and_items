@@ -70,14 +70,14 @@ body {
 }
 
 #btns{
-  margin-top: 30px;
+  margin-bottom: 10px;
   width: 200px;
   height: 35px;
   border: solid 1px black;
 }
 
 .modal-body{
-  height: 470px;
+  height: 400px;
 }
 
 .p{

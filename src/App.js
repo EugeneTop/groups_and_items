@@ -73,7 +73,9 @@ class App extends Component {
                                 <div className="col-md-12">
                                     <p>{this.props.infoItem.description}</p>
                                 </div>
-                                <div className="col-md-12 text-center">
+                            </div>
+                            <div class="modal-footer">
+                                <div className="text-center">
                                     <button id="btns" data-dismiss="modal" aria-hidden="true">Close</button>
                                 </div>
                             </div>
