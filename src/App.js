@@ -8,23 +8,28 @@ import { getGroups } from './action/groups';
 import { getItems } from "./action/items";
 import { getCount } from "./action/count";
 import { getInfoItem } from "./action/infoItem";
+import groups from "./reducers/groups";
 
 class App extends Component {
-    out(id){
-        this.refs[id].value = '';
+
+    componentWillMount() {
+        this.props.onGetGroups();
+        this.props.onGetItems('d3956052-8110-11e7-bb31-be2e44b06b34');
+        setTimeout(() => {
+            this.props.groups.map((group) => {
+                this.props.onGetCount(group.id);
+            });
+        } , 1000);
+        setTimeout(() => {
+            for(let i = 0; i < this.props.count.length; i++){
+                this.refs[i].value = this.props.count[i];
+            }
+        }, 2000);
     }
-    counts(id){
-        console.log(this.props.count);
-        this.props.onGetCount(id);
-        console.log(this.props.count);
-        this.refs[id].value = this.props.count;
-    }
+
   render() {
     return (
-        <div onLoad={ () => {
-            this.props.onGetGroups();
-            this.props.onGetItems('d3956052-8110-11e7-bb31-be2e44b06b34');
-        }} className="row">
+        <div className="row">
           <div className="App1">
             <div className="col-md-1">
               <img id="img1" src={logo} alt=""/>
@@ -36,10 +41,10 @@ class App extends Component {
           <div className="col-md-3 body">
                 {
                   this.props.groups.map((group, index) =>
-                    <p key={index}><span className="pointer" onMouseOut={this.out.bind(this, group.id)} onMouseOver={this.counts.bind(this, group.id)} onClick={this.props.onGetItems.bind(this, group.id)}>{group.name}</span><input className="inp" id={group.id} ref={group.id}/></p>
+                    <p key={index}><span className="pointer" onClick={ this.props.onGetItems.bind(this, group.id) }>{group.name}</span><input className="inp" id='count' ref={index}/></p>
                 )}
           </div>
-          <div className="second">
+          <div className="second col-md-9">
                   {
                   this.props.items.map((item, index) =>
                       <div className="col-md-12 title" key={index}><span className="itemTitle col-md-3  text-center" data-toggle="modal" data-target="#myModalBox" onClick={this.props.onGetInfoItems.bind(this, item.id)}>{item.title}</span><span className="col-md-4  text-center">{item.data}</span><span className="col-md-3  text-center">{item.subtitle}</span></div>
@@ -85,7 +90,7 @@ export default connect(
         },
         onGetItems: (idI) => {
           const itemId = idI;
-          dispatch(getItems(itemId));
+              dispatch(getItems(itemId));
         },
         onGetCount: (Iid) => {
             const itemId = Iid;
@@ -94,6 +99,6 @@ export default connect(
         onGetInfoItems: (Iid) => {
             const itemId = Iid;
             dispatch(getInfoItem(itemId));
-        }
+        },
     })
 )(App);
