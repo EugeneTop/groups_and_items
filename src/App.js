@@ -10,15 +10,15 @@ import { getCount } from "./action/count";
 import { getInfoItem } from "./action/infoItem";
 
 class App extends Component {
-    // out(id){
-    //     this.refs[id].value = '';
-    // }
-    // counts(id){
-    //     console.log(this.props.count);
-    //     this.props.onGetCount(id);
-    //     console.log(this.props.count);
-    //     this.refs[id].value = this.props.count;
-    // }
+    out(id){
+        this.refs[id].value = '';
+    }
+    counts(id){
+        console.log(this.props.count);
+        this.props.onGetCount(id);
+        console.log(this.props.count);
+        this.refs[id].value = this.props.count;
+    }
   render() {
     return (
         <div onLoad={ () => {
@@ -39,7 +39,7 @@ class App extends Component {
                     <p key={index}><span className="pointer" onMouseOut={this.out.bind(this, group.id)} onMouseOver={this.counts.bind(this, group.id)} onClick={this.props.onGetItems.bind(this, group.id)}>{group.name}</span><input className="inp" id={group.id} ref={group.id}/></p>
                 )}
           </div>
-          <div className="second col-md-9">
+          <div className="second">
                   {
                   this.props.items.map((item, index) =>
                       <div className="col-md-12 title" key={index}><span className="itemTitle col-md-3  text-center" data-toggle="modal" data-target="#myModalBox" onClick={this.props.onGetInfoItems.bind(this, item.id)}>{item.title}</span><span className="col-md-4  text-center">{item.data}</span><span className="col-md-3  text-center">{item.subtitle}</span></div>
