@@ -34,7 +34,7 @@ class App extends Component {
 
     render() {
         return (
-            <div className="row">
+            <div className="container-fluid main_div">
                 <div className="App1">
                     <div className="col-md-1">
                         <img id="img1" src={logo} alt=""/>
