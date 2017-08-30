@@ -26,9 +26,9 @@ class App extends Component {
             });
         } , 1000);
         setTimeout(() => {
-            for(let i = 0; i < this.props.count.length; i++){
-                this.refs[i].value = this.props.count[i];
-            }
+           this.props.count.map((count) => {
+               this.refs[count.name].value = count.length;
+           })
         }, 1400);
     }
 
@@ -49,7 +49,7 @@ class App extends Component {
                             <p key={index}><span className="pointer" onClick={() => {
                                 this.props.onGetItems(group.id);
                                 localStorage.setItem('myDate', group.id);
-                            } }>{group.name}</span><input className="inp" id='count' ref={index}/></p>
+                            } }>{group.name}</span><input className="inp" id='count' ref={group.id}/></p>
                         )}
                 </div>
                 <div className="second col-md-9">
